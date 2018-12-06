@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors())
 app.use('/users', usersRouter);
+app.use('/media', mediaRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -6,7 +6,7 @@ module.exports = {
         let hash = bcrypt.hashSync(password, salt)
         return hash
     },
-    compare: (password, inpur) => {
+    compare: (password, input) => {
         return bcrypt.compareSync(input, password)
     }
 }

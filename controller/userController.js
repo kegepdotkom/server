@@ -58,7 +58,7 @@ module.exports = {
             email: req.body.email,
             password: req.body.password,
             imgUrl: req.body.imgUrl
-        })
+        })  
         .then(data => {
             res.status(200).json({
                 msg: 'success edit profile',

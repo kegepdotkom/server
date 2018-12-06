@@ -2,7 +2,7 @@ const { Storage } = require('@google-cloud/storage')
 
 const storage = new Storage ({
     projectId: 'golden-record-221510',
-    keyFilename: '../keyfile.json'
+    keyFilename: './keyfile.json'
 })
 
 const bucketName = 'kegepdotkom'
@@ -27,6 +27,7 @@ module.exports = {
 
         stream.on('error', (err) => {
             req.file.cloudStorageError = err;
+            console.log(err)
             res.status(400).json({
                 msg: 'error on upload'
             })
@@ -35,7 +36,7 @@ module.exports = {
           stream.on('finish', () => {
             req.file.cloudStorageObject = gcsname;
             file.makePublic().then(() => {
-              req.file.cloudStoragePublicUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`
+              req.file.cloudStoragePublicUrl = `https://storage.googleapis.com/${bucketName}/${gcsname}`
               next();
             });
           });

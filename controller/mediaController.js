@@ -1,9 +1,9 @@
 const Media = require('../models/media')
-var multer  = require('multer')
 
 module.exports = {
     read(req, res) {
-        Media.find({}).populate('User')
+        console.log('=================')
+        Media.find({}).populate('like')
             .then(media => {
                 res.status(200).json({media})
             })
@@ -13,7 +13,7 @@ module.exports = {
     },
     store(req, res) {
         Media.create({
-            url: req.body.url,
+            url: req.file.cloudStoragePublicUrl,
             like: req.body.like,
             title: req.body.title,
             description: req.body.description,

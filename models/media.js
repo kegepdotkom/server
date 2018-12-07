@@ -8,8 +8,7 @@ const mediaSchema = new Schema ({
     },
     like: [{type: Schema.Types.ObjectId, ref: "User"}],
     title: {
-        type: String,
-        required: true
+        type: String
     },
     description: {
         type: String

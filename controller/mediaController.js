@@ -2,14 +2,13 @@ const Media = require('../models/media')
 
 module.exports = {
     read(req, res) {
-        console.log('=================')
         Media.find({}).populate('like')
-            .then(media => {
-                res.status(200).json({media})
-            })
-            .catch(err => {
-                res.status(400).json({err: err.message})
-            })
+        .then(media => {
+            res.status(200).json({media})
+        })
+        .catch(err => {
+            res.status(400).json({err: err.message})
+        })
     },
     store(req, res) {
         Media.create({
@@ -20,12 +19,12 @@ module.exports = {
             comment: req.body.comment,
             type: req.file.mimetype
         })
-            .then(media => {
-                res.status(201).json({media})
-            })
-            .catch(err => {
-                res.status(400).json({err: err.message})
-            })
+        .then(media => {
+            res.status(201).json({media})
+        })
+        .catch(err => {
+            res.status(400).json({err: err.message})
+        })
     },
     update(req, res) {
         Media.updateOne({

@@ -16,7 +16,8 @@ const mediaSchema = new Schema ({
     },
     comment: [{
         type: String
-    }]
+    }],
+    type: String
 })
 
 const Media = mongoose.model('Media', mediaSchema)

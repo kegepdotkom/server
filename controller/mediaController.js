@@ -17,7 +17,8 @@ module.exports = {
             like: req.body.like,
             title: req.body.title,
             description: req.body.description,
-            comment: req.body.comment
+            comment: req.body.comment,
+            type: req.file.mimetype
         })
             .then(media => {
                 res.status(201).json({media})

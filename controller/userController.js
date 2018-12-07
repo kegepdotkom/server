@@ -8,7 +8,7 @@ module.exports = {
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
-            imgUrl: req.body.imgUrl
+            imgUrl: 'https://pro2-bar-s3-cdn-cf3.myportfolio.com/8ee9e0df6a57e6cb08ce8298364354c5/e01d8c8ac8d02856d9ca18a0_rw_1920.jpg?h=cd2ded3063a9f9cc22079f881abdf8f9'
         })
         .then(data => {
             res.status(200).json({
@@ -32,7 +32,6 @@ module.exports = {
                     msg: 'wrong username'
                 })
             } else {
-                console.log(req.body)
                 let check = bcrypt.compare(data.password, req.body.password)
                 if(!check) {
                     res.status(400).json({
@@ -40,7 +39,9 @@ module.exports = {
                     })
                 } else {
                     res.status(200).json({
-                        token: jwt.token(data)
+                        token: jwt.token(data),
+                        username: req.body.username,
+                        imgUrl: data.imgUrl
                     })
                 }
             }
@@ -56,8 +57,7 @@ module.exports = {
         User.findByIdAndUpdate(req.params.id, {
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password,
-            imgUrl: req.body.imgUrl
+            password: req.body.password
         })  
         .then(data => {
             res.status(200).json({
